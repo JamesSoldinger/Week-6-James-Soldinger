@@ -1,0 +1,27 @@
+#myCanvas {
+  position: fixed;
+  top:25%;
+  left:50%;
+  transform: translateX(-50%);
+  border-style: double;
+  border-color: black;
+}
+
+body {
+  background-image: url('god-creation-leonardo-da-vinci-wallpaper.jpeg');
+
+}
+
+
+
+#topside {
+  position: fixed;
+  top:10%;
+  left:50%;
+  transform: translateX(-50%);
+  background-color: white;
+  width: 400px;
+  height: 120px;
+  padding-left: 10px;
+
+}

@@ -1,0 +1,82 @@
+<html>
+  <head>
+      <title>Week 6 Assignment, Using the Canvas</title>
+      <link rel="stylesheet" type="text/css" href="styleweek6.css">
+
+      <script >
+        //this section is to obtain the values from the JSON/API and to create an array
+        window.onload = function() {
+          var xmlhttp = new XMLHttpRequest();
+          var url = "https://home.ubalt.edu/gwalsh/idia619/data.php";
+
+          xmlhttp.onreadystatechange = function() {
+              if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                  var myArr = JSON.parse(xmlhttp.responseText);
+                  myFunction(myArr);
+                  console.log(xmlhttp.responseText);
+              }
+          };
+          xmlhttp.open("GET", url, true);
+          xmlhttp.send();
+
+        var myArr = xmlhttp.responseText;
+        console.log(myArr);
+        function myFunction(arr){
+          //creates drawing tool
+          var c = document.getElementById('myCanvas');
+          var ctx = c.getContext('2d');
+          ctx.fillStyle = "Black";
+          ctx.fillRect (0,633,550,22)
+          var labelx = 50;
+          var labely = 650;
+          var itemlabel = 1;
+          ctx.font = "20px Arial";
+          ctx.fillStyle = "White";
+
+          for (var i =0; i < 5; i++){
+            ctx.fillText('Item ' + itemlabel, labelx, labely);
+            labelx += 100;
+            itemlabel++;
+          }
+
+          var drawx = 50;
+          var drawy = 630;
+          var width = 30;
+          var colors = ['purple', 'yellow', 'orange', 'red', 'blue']; // use this array to change colors for each bar
+          for (var i = 0; i <5; i++){
+            ctx.fillStyle = colors[i];
+            //if else statements to make sure each bar was drawn
+            if(i == 0){
+              ctx.fillRect (drawx,drawy-arr[0].item01*10,width,arr[0].item01*10);
+            }else if(i == 1){
+              ctx.fillRect (drawx,drawy-arr[0].item02*10,width,arr[0].item02*10);
+            }else if(i == 2){
+              ctx.fillRect (drawx,drawy-arr[0].item03*10,width,arr[0].item03*10);
+            }else if(i == 3){
+              ctx.fillRect (drawx,drawy-arr[0].item04*10,width,arr[0].item04*10);
+            }else if(i == 4){
+              ctx.fillRect (drawx,drawy-arr[0].item05*10,width,arr[0].item05*10);
+            }
+            drawx += 100;// adjusts x placement
+          }
+        }
+      }
+      </script>
+  </head>
+  <body>
+    <div id="topside">
+      <h1 >Is this the work of Da Vinci?</h1>
+      <h2 >Nah but it is a pretty spiffy chart</h2>
+    </div>
+
+    <!--creates a canvas, will use separate style sheet to place the canvas in
+    the center of the page -->
+    <canvas id="myCanvas" width="550px" height="700px"></canvas>
+
+
+  </body>
+
+
+
+
+</html>
